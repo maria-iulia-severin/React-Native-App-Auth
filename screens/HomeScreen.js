@@ -26,9 +26,9 @@ const HomeScreen = props => {
 
         <View style={styles.buttonL}>
           <MainButton onPress={() => {
-            props.navigation.navigate({ routeName: 'AddInput' });
+            props.navigation.navigate({ routeName: 'Auth' });
           }}
-          >ADD INPUTS</MainButton>
+          >Auth INPUTS</MainButton>
         </View>
       </View>
     </View>

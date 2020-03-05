@@ -13,7 +13,7 @@ import IncomeDetailScreen from '../screens/IncomeDetailScreen';
 import EditIncomeScreen from '../screens/EdittIncomeScreen';
 import HomeScreen from '../screens/HomeScreen';
 import MapScreen from '../screens/MapScreen';
-
+import AuthScreen from '../screens/Auth';
 const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
@@ -35,7 +35,8 @@ const InputsNavigator = createStackNavigator(
     InputOverview: IncomeOverviewScreen,
     InputDetail: IncomeDetailScreen,
     AddInput: EditIncomeScreen,
-    Map: MapScreen
+    Map: MapScreen,
+    Auth: AuthScreen
 
   },
   {
