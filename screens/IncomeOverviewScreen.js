@@ -102,6 +102,7 @@ const IncomeOverviewScreen = props => {
         <Text>An error occured</Text>
         <Button title="Try again" onPress={loadInputs} color={Colors.primary} />
       </View >
+      
     );
   }
 

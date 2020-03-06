@@ -1,19 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
-import MainButton from '../components/UI/MainButton';
+import { StyleSheet, Text, View, Platform , Image} from 'react-native';
+
 import Colors from '../constants/colors';
+import MainButton from '../components/UI/MainButton';
 import TopHeader from '../components/UI/TopHeader';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/UI/MyHeaderButton';
 const HomeScreen = props => {
+
+  const name = props.navigation.getParam('name');
+  const photoUrl = props.navigation.getParam('photoUrl');
   return (
     <View style={styles.screen}>
       <View style={styles.header} >
         <TopHeader />
         <View style={styles.alignText}>
-          <Text style={styles.styleTitle}>SENSIBLE</Text>
-          <Text style={styles.styleSubTitle}>FINANCE MANAGEMENT APP</Text>
-          <View style={styles.pacman}></View>
+          <Text style={styles.styleTitle}>{name} </Text>
+          <Image style={styles.image} source={{ uri: photoUrl}}/>
+          {/* <View style={styles.pacman}></View> */}
         </View>
       </View>
       <View style={styles.buttons}>
@@ -23,12 +27,12 @@ const HomeScreen = props => {
           }}
           >VIEW INPUTS</MainButton>
         </View>
-
+       
         <View style={styles.buttonL}>
           <MainButton onPress={() => {
-            props.navigation.navigate({ routeName: 'Auth' });
+            props.navigation.navigate({ routeName: 'EditIncome' });
           }}
-          >Auth INPUTS</MainButton>
+          >ADD INPUTS</MainButton>
         </View>
       </View>
     </View>
@@ -37,7 +41,7 @@ const HomeScreen = props => {
 
 HomeScreen.navigationOptions = navData => {
   return {
-    headerTitle: 'Home',
+    headerTitle: 'Welcome',
     // headerLeft: () =>
       
     //     <HeaderButtons HeaderButtonComponent={HeaderButton}>
@@ -87,7 +91,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     width: '100%',
     alignItems: 'center',
-    marginTop: '30%',
+    marginTop: '15%',
   },
   buttonCA: {
     width: '80%',
@@ -118,7 +122,15 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     shadowOpacity: 0.6,
     elevation: 8 //this is for android shadow
-  }
+  },
+  image: {
+    marginTop: 15,
+    width: 150,
+    height: 150,
+    borderColor: "rgba(0,0,0,0.2)",
+    borderWidth: 3,
+    borderRadius: 150
+  },
 });
 
 export default HomeScreen;

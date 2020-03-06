@@ -1,4 +1,5 @@
 import React from 'react';
+import {  createSwitchNavigator,} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
@@ -13,7 +14,7 @@ import IncomeDetailScreen from '../screens/IncomeDetailScreen';
 import EditIncomeScreen from '../screens/EdittIncomeScreen';
 import HomeScreen from '../screens/HomeScreen';
 import MapScreen from '../screens/MapScreen';
-import AuthScreen from '../screens/Auth';
+import AuthScreen from '../screens/AuthScreen';
 const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
@@ -31,12 +32,12 @@ const defaultNavOptions = {
 const InputsNavigator = createStackNavigator(
   {
     //the first screen written here is always the first screen that we see
+   // Auth: AuthScreen,
     Home: HomeScreen,
     InputOverview: IncomeOverviewScreen,
     InputDetail: IncomeDetailScreen,
     AddInput: EditIncomeScreen,
-    Map: MapScreen,
-    Auth: AuthScreen
+    Map: MapScreen
 
   },
   {
@@ -87,7 +88,8 @@ const InputsNavigator = createStackNavigator(
 //i have to change here - this is the menu
 const AddInputNavigator = createStackNavigator(
   {
-    AddInput: EditIncomeScreen
+    AddInput: EditIncomeScreen,
+
   },
   {
     navigationOptions:
@@ -106,10 +108,10 @@ const AddInputNavigator = createStackNavigator(
 );
 
 //combining those 2 stack navigators in a drawer
-const SensibleNavigator = createDrawerNavigator(
+const MainNavigator = createDrawerNavigator(
   {
     Inputs: InputsNavigator,
-    Add: AddInputNavigator
+   
   },
   {
     contentOptions: {
@@ -117,5 +119,19 @@ const SensibleNavigator = createDrawerNavigator(
     }
   }
 );
+
+const AuthNavigator = createStackNavigator(
+  {
+    Auth: AuthScreen
+  },
+  {
+    defaultNavigationOptions: defaultNavOptions
+  }
+);
+const SensibleNavigator = createSwitchNavigator({
+  Auth: AuthNavigator,
+  Main: MainNavigator
+});
+
 
 export default createAppContainer(SensibleNavigator);
