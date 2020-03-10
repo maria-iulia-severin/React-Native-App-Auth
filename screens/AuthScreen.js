@@ -7,9 +7,9 @@ import MainButton from '../components/UI/MainButton';
 import TopHeader from '../components/UI/TopHeader';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState, useReducer, useCallback } from 'react';
-import { KeyboardAvoidingView, StyleSheet, Text, View, Image, Button, ScrollView } from "react-native"
+import { KeyboardAvoidingView, StyleSheet, Text, View, Image, Button, ScrollView, Alert } from "react-native"
 import * as Google from 'expo-google-app-auth'
-
+import * as Facebook from 'expo-facebook';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -74,7 +74,56 @@ const AuthScreen = props => {
 
   const [name, setName] = useState('');
   const [photoUrl, setPhotoUrl] = useState('');
+  const [nameFB, setNameFb] = useState('');
+  const [photoUrlFB, setPhotoUrlFB] = useState('');
 
+  const signInWithFacebook = useCallback(async () => {
+
+    try {
+      await Facebook.initializeAsync('492743158049972');
+      const {
+        type,
+        token,
+        expires,
+        permissions,
+        declinedPermissions,
+      } = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ['public_profile'],
+      });
+      if (type === 'success') {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=name,picture`);
+        //const userInfo= await response.json();
+        //console.log(userInfo);
+        const responseJSON = JSON.stringify(await response.json());
+        //const pictureFB = JSON.stringify(await response.json().picture);
+        console.log(responseJSON);
+        var json = JSON.parse(responseJSON);
+       
+        // var regexName = /([A-Z])\w+/g;
+
+        // var regexPicture = /([A-Z])\w+/g;
+
+        // var newName = responseJSON.match(regexName).toString();
+        // var str1 = newName.split(",");
+        // for (var i = 0; i < str1.length; i++) {
+        //   var str = str1[0] + " " + str1[1];
+        // }
+
+      //  console.log(str);
+        return props.navigation.navigate('Home',
+          {
+            name: json.name,
+            photoUrl: json.picture.data.url
+          });
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
+    }
+
+  }, []);
 
   const signInWithGoogleAsync = useCallback(async () => {
     try {
@@ -83,7 +132,6 @@ const AuthScreen = props => {
         iosClientId: '626861414228-795dluosc47g9u4m3836flcdukm1i2cg.apps.googleusercontent.com',
         scopes: ['profile', 'email'],
       });
-
       if (result.type === 'success') {
 
         return props.navigation.navigate('Home',
@@ -140,11 +188,18 @@ const AuthScreen = props => {
                 onPress={signupHandler}
               />
             </View>
-            <View style={styles.buttonContainer}>
+            <View style={styles.buttonGoogle}>
               <Button
-                color='#137B13'
+                color='white'
                 title="Sign in with Google"
                 onPress={signInWithGoogleAsync}
+              />
+            </View>
+            <View style={styles.buttonFacebook}>
+              <Button
+                color='white'
+                title="Sign in with Facebook"
+                onPress={signInWithFacebook}
               />
             </View>
           </ScrollView>
@@ -185,6 +240,21 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 10
+  },
+  buttonGoogle: {
+    width: '90%',
+    alignSelf: 'center',
+    borderRadius: 4,
+    padding: 5,
+    backgroundColor: '#DB4437'
+  },
+  buttonFacebook: {
+    width: '90%',
+    alignSelf: 'center',
+    borderRadius: 4,
+    padding: 5,
+    backgroundColor: '#3B5998',
+    marginTop: 5
   },
   screen: {
     flex: 1,

@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, Platform , Image} from 'react-native';
+import React, { useCallback } from 'react';
+import { StyleSheet, Text, View, Platform, Image, Button } from 'react-native';
 
 import Colors from '../constants/colors';
 import MainButton from '../components/UI/MainButton';
@@ -7,23 +7,27 @@ import TopHeader from '../components/UI/TopHeader';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/UI/MyHeaderButton';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Google from 'expo-google-app-auth'
 
 const HomeScreen = props => {
 
   const name = props.navigation.getParam('name');
   const photoUrl = props.navigation.getParam('photoUrl');
+
+
+
   return (
     <View style={styles.screen}>
-      <LinearGradient  colors={['#0e8333', '#23e119']} style={styles.header} >
-    
-      
+      <LinearGradient colors={['#0e8333', '#23e119']} style={styles.header} >
+
+
         <View style={styles.alignText}>
           <Text style={styles.styleTitle}>{name} </Text>
-          <Image style={styles.image} source={{ uri: photoUrl}}/>
+          <Image style={styles.image} source={{ uri: photoUrl }} />
           {/* <View style={styles.pacman}></View> */}
-    
-     
-      </View>
+
+
+        </View>
       </LinearGradient>
       <View style={styles.buttons}>
         <View style={styles.buttonCA}>
@@ -32,13 +36,14 @@ const HomeScreen = props => {
           }}
           >VIEW INPUTS</MainButton>
         </View>
-       
+
         <View style={styles.buttonL}>
           <MainButton onPress={() => {
             props.navigation.navigate({ routeName: 'EditInput' });
           }}
           >ADD INPUTS</MainButton>
         </View>
+       
       </View>
     </View>
   );
@@ -48,7 +53,7 @@ HomeScreen.navigationOptions = navData => {
   return {
     headerTitle: 'Welcome',
     // headerLeft: () =>
-      
+
     //     <HeaderButtons HeaderButtonComponent={HeaderButton}>
     //       <Item
     //         title="Menu"

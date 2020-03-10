@@ -42,7 +42,8 @@
     "redux-thunk": "^2.3.0",
     "request": "^2.88.2",
     "thunk": "0.0.1",
-    "expo-google-sign-in": "~8.0.0"
+    "expo-google-sign-in": "~8.0.0",
+    "expo-facebook": "~8.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.0.0",
