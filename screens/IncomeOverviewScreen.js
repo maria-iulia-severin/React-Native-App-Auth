@@ -6,27 +6,15 @@ import TemplateItem from '../components/features/TemplateItem';
 import HeaderButton from '../components/UI/MyHeaderButton';
 import Colors from '../constants/colors';
 import * as InputsActions from '../store/actions/incomes';
-import { loadAsync } from 'expo-font';
-import { deleteInput } from '../helpers/db';
-
-
 
 const IncomeOverviewScreen = props => {
-
-
 
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState();
-  //IncomeOverviewScreen is taking the data that is in userIncomes 
-  //using the useSelector which has the state=initialState : { all parameters for income }
   const inputs = useSelector(state => state.inputs.inputs)
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(InputsActions.loadInputs());
-  // }, [dispatch]);
   const loadInputs = useCallback(async () => {
     setError(null);
     setIsRefreshing(true);
@@ -90,19 +78,12 @@ const IncomeOverviewScreen = props => {
     });
   };
 
-  // const editIncomeHandler = (id) => {
-  //   props.navigation.navigate('EditIncome', {
-  //     incomeId: id
-  //   });
-  // };
-
   if (error) {
     return (
       < View style={styles.centered} >
         <Text>An error occured</Text>
         <Button title="Try again" onPress={loadInputs} color={Colors.primary} />
       </View >
-      
     );
   }
 
@@ -139,13 +120,6 @@ const IncomeOverviewScreen = props => {
           selectItemHandler(itemData.item.id, itemData.item.name);
         }}
       >
-        {/* <Button
-          color={Colors.primary}
-          title="Edit"
-          onPress={() => {
-            editIncomeHandler(itemData.item.id);
-          }}
-        /> */}
         <Button
           color={Colors.primary}
           title="Delete"
@@ -154,8 +128,6 @@ const IncomeOverviewScreen = props => {
       </TemplateItem>
     }
   />;
-
-
 };
 
 //default header title and adding a + button using ionicons

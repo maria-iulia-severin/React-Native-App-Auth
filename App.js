@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { createStore, combineReducers , applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
-import { useScreens } from 'react-native-screens';
 import ReduxThunk from 'redux-thunk';
 import SensibleNavigator from '../React-Native-App/navigation/SensibleNavigator';
 import {init} from '../React-Native-App/helpers/db';
@@ -28,7 +26,6 @@ const rootReducer = combineReducers({
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
-//useScreens();
 
 //fetching the Fonts
 const fetchFonts = () => {
@@ -58,6 +55,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
 
-});

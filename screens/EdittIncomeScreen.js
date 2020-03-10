@@ -2,11 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   ScrollView,
-  FlatList,
   Text,
   TextInput,
   StyleSheet,
-  Button,
   Platform,
   Alert,
   ActivityIndicator
@@ -18,6 +16,7 @@ import * as inputsActions from '../store/actions/incomes';
 import Colors from '../constants/colors';
 import ImagePicker from '../components/features/ImagePicker';
 import LocationPicker from '../components/features/LocationPicker';
+
 const EditIncomeScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
@@ -34,11 +33,8 @@ const EditIncomeScreen = props => {
   //if we have an id, we edit the income and we will have all the data in the inputs
   //if we don t have the id, we have an empty input
   const [nameVal, setName] = useState('');
-  // const [nameIsValid, setNameIsValid] = useState(false);
-  // const [imageURL, setImageURL] = useState(editedInput ? editedInput.imageURL : '');
   const [selectedLocation, setSelectedLocation] = useState();
   const [selectedImage, setSelectedImage] = useState();
-  const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
 
   const dispatch = useDispatch();
@@ -59,7 +55,6 @@ const EditIncomeScreen = props => {
     setSelectedLocation(location);
   }, []);
 
-  //code new
   const submitHandler = useCallback(async () => {
     if (!nameVal) {
       Alert.alert('Wrong input', 'Please check the errors', [{ text: 'okay' }])
@@ -72,35 +67,12 @@ const EditIncomeScreen = props => {
         nameVal,
         selectedImage,
         selectedLocation,
-       
         description,
-
       )
     );
     props.navigation.goBack();
-
-
     setIsLoading(false);
-  }, [dispatch, incId, nameVal, selectedImage,selectedLocation, description]);
-
-
-  //new
-
-  //the good one 
-  // const submitHandler = () => {
-  //   dispatch(
-  //     inputsActions.addInput(
-  //       nameVal,
-  //       selectedImage,
-  //       // imageURL,
-  //      +amount,
-  //       description,
-  //     )
-  //   );
-  //   props.navigation.goBack();
-  // };
-  //this is the good one
-
+  }, [dispatch, incId, nameVal, selectedImage, selectedLocation, description]);
 
   useEffect(() => {
     props.navigation.setParams({ submit: submitHandler });

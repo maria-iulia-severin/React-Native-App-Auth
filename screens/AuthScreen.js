@@ -1,13 +1,10 @@
 import { useDispatch } from 'react-redux';
-
 import Input from '../components/UI/Input';
 import Card from '../components/UI/Card';
 import Colors from '../constants/colors';
-
-import TopHeader from '../components/UI/TopHeader';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState, useReducer, useCallback } from 'react';
-import { KeyboardAvoidingView, StyleSheet, Text, View, Image, Button, ScrollView, Alert } from "react-native"
+import { KeyboardAvoidingView, StyleSheet, Text, View, Image, Button, ScrollView } from "react-native"
 import * as Google from 'expo-google-app-auth'
 import * as Facebook from 'expo-facebook';
 
@@ -238,20 +235,15 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   screen: {
-    flex: 1,
-    //justifyContent: "center",
-    // alignItems: 'center'
+    flex: 1
   },
   header: {
     backgroundColor: Colors.primary,
     width: '100%',
     height: '60%',
     alignItems: 'center'
-    // marginBottom: 80
   },
   alignText: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
     margin: '10%'
   },
   styleTitle: {
@@ -267,7 +259,6 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flex: 1,
-    // justifyContent: 'center',
     width: '100%',
     alignItems: 'center',
     marginTop: '30%',
@@ -294,7 +285,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 80,
     borderBottomRightRadius: 80,
     borderBottomLeftRadius: 80,
-    //I THINK HERE WE HAVE TO CHANGE, BECAUSE IS NOT REALLY RESPONSIVE WITH THE DIMENSION OF THE SCREEN
     marginTop: '29%',
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 3 },

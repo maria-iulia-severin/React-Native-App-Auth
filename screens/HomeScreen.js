@@ -1,11 +1,8 @@
-import React, { useCallback } from 'react';
-import { StyleSheet, Text, View, Platform, Image, Button } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Platform, Image } from 'react-native';
 
 import Colors from '../constants/colors';
 import MainButton from '../components/UI/MainButton';
-import TopHeader from '../components/UI/TopHeader';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import HeaderButton from '../components/UI/MyHeaderButton';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Google from 'expo-google-app-auth'
 
@@ -22,9 +19,6 @@ const HomeScreen = props => {
         <View style={styles.alignText}>
           <Text style={styles.styleTitle}>{name} </Text>
           <Image style={styles.image} source={{ uri: photoUrl }} />
-          {/* <View style={styles.pacman}></View> */}
-
-
         </View>
       </LinearGradient>
       <View style={styles.buttons}>
@@ -50,25 +44,12 @@ const HomeScreen = props => {
 HomeScreen.navigationOptions = navData => {
   return {
     headerTitle: 'Welcome',
-    // headerLeft: () =>
-
-    //     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-    //       <Item
-    //         title="Menu"
-    //         iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
-    //         onPress={() => {
-    //           navData.navigation.toggleDrawer();
-    //         }}
-    //       />
-    //     </HeaderButtons>
-    //   ,
   };
 };
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    //justifyContent: "center",
     alignItems: 'center'
   },
   header: {
@@ -76,7 +57,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '60%',
     alignItems: 'center'
-    // marginBottom: 80
   },
   alignText: {
     justifyContent: 'center',
@@ -96,7 +76,6 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flex: 1,
-    // justifyContent: 'center',
     width: '100%',
     alignItems: 'center',
     marginTop: '15%',
@@ -123,7 +102,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 80,
     borderBottomRightRadius: 80,
     borderBottomLeftRadius: 80,
-    //I THINK HERE WE HAVE TO CHANGE, BECAUSE IS NOT REALLY RESPONSIVE WITH THE DIMENSION OF THE SCREEN
     marginTop: '29%',
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 3 },

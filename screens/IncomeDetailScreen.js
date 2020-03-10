@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     ScrollView,
     View,
     Text,
     Image,
-    StyleSheet,
-    Button
+    StyleSheet
 } from 'react-native';
 import Colors from '../constants/colors';
 import { useSelector } from 'react-redux';
-import ImagePicker from '../components/features/ImagePicker';
 import MapPreview from '../../React-Native-App/components/features/MapPreview';
 
 const IncomeDetailScreen = props => {
