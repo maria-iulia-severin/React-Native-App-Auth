@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../../constants/colors';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const MainButton = props => {
   return (
     <TouchableOpacity activeOpacity={0.6} onPress={props.onPress}>
-      <View style={styles.button}>
+      <LinearGradient  colors={['#23e119','#0e8333']} style={styles.button}>
+     
         <Text style={styles.buttonText}>{props.children}</Text>
-      </View>
+        </LinearGradient>
     </TouchableOpacity>
   );
 };

@@ -6,20 +6,25 @@ import MainButton from '../components/UI/MainButton';
 import TopHeader from '../components/UI/TopHeader';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/UI/MyHeaderButton';
+import { LinearGradient } from 'expo-linear-gradient';
+
 const HomeScreen = props => {
 
   const name = props.navigation.getParam('name');
   const photoUrl = props.navigation.getParam('photoUrl');
   return (
     <View style={styles.screen}>
-      <View style={styles.header} >
-        <TopHeader />
+      <LinearGradient  colors={['#0e8333', '#23e119']} style={styles.header} >
+    
+      
         <View style={styles.alignText}>
           <Text style={styles.styleTitle}>{name} </Text>
           <Image style={styles.image} source={{ uri: photoUrl}}/>
           {/* <View style={styles.pacman}></View> */}
-        </View>
+    
+     
       </View>
+      </LinearGradient>
       <View style={styles.buttons}>
         <View style={styles.buttonCA}>
           <MainButton onPress={() => {
@@ -30,7 +35,7 @@ const HomeScreen = props => {
        
         <View style={styles.buttonL}>
           <MainButton onPress={() => {
-            props.navigation.navigate({ routeName: 'EditIncome' });
+            props.navigation.navigate({ routeName: 'EditInput' });
           }}
           >ADD INPUTS</MainButton>
         </View>
@@ -73,7 +78,7 @@ const styles = StyleSheet.create({
   alignText: {
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '10%'
+    margin: '20%'
   },
   styleTitle: {
     fontFamily: 'open-sans-bold',
