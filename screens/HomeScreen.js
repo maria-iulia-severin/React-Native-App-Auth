@@ -14,8 +14,6 @@ const HomeScreen = props => {
   const name = props.navigation.getParam('name');
   const photoUrl = props.navigation.getParam('photoUrl');
 
-
-
   return (
     <View style={styles.screen}>
       <LinearGradient colors={['#0e8333', '#23e119']} style={styles.header} >

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Input from '../components/UI/Input';
 import Card from '../components/UI/Card';
 import Colors from '../constants/colors';
-import MainButton from '../components/UI/MainButton';
+
 import TopHeader from '../components/UI/TopHeader';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState, useReducer, useCallback } from 'react';
@@ -72,10 +72,6 @@ const AuthScreen = props => {
     [dispatchFormState]
   );
 
-  const [name, setName] = useState('');
-  const [photoUrl, setPhotoUrl] = useState('');
-  const [nameFB, setNameFb] = useState('');
-  const [photoUrlFB, setPhotoUrlFB] = useState('');
 
   const signInWithFacebook = useCallback(async () => {
 
@@ -93,24 +89,9 @@ const AuthScreen = props => {
       if (type === 'success') {
         // Get the user's name using Facebook's Graph API
         const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=name,picture`);
-        //const userInfo= await response.json();
-        //console.log(userInfo);
         const responseJSON = JSON.stringify(await response.json());
-        //const pictureFB = JSON.stringify(await response.json().picture);
-        console.log(responseJSON);
+
         var json = JSON.parse(responseJSON);
-       
-        // var regexName = /([A-Z])\w+/g;
-
-        // var regexPicture = /([A-Z])\w+/g;
-
-        // var newName = responseJSON.match(regexName).toString();
-        // var str1 = newName.split(",");
-        // for (var i = 0; i < str1.length; i++) {
-        //   var str = str1[0] + " " + str1[1];
-        // }
-
-      //  console.log(str);
         return props.navigation.navigate('Home',
           {
             name: json.name,
@@ -184,7 +165,7 @@ const AuthScreen = props => {
             <View style={styles.buttonContainer}>
               <Button
                 title="Login"
-                color={Colors.primary}
+               color={Colors.primary}
                 onPress={signupHandler}
               />
             </View>

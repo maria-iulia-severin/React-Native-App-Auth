@@ -33,12 +33,8 @@ const ImgPicker = props => {
             aspect: [16, 9],
             quality: 0.5
         });
-
-       // const resp = API(image.uri);
         setPickedImage(image.uri);
         props.onImageTaken(image.uri);
-      //  getTextFromImage(image.uri);
-
     };
 
     return (

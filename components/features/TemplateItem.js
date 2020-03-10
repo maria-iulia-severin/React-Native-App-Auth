@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     StyleSheet,
     View,
@@ -8,7 +8,6 @@ import {
     TouchableNativeFeedback,
     Platform
 } from 'react-native';
-import ImagePicker from './ImagePicker';
 import Card from '../UI/Card';
 
 const TemplateItem = props => {
@@ -27,14 +26,11 @@ const TemplateItem = props => {
 
                         <View style={styles.imageContainer}>
                             <Image style={styles.image} source={{ uri: props.image }} />
-                            {/* <ImagePicker onImageTaken={imageTakenHandler}/> */}
-                          
                         </View>
                        
                         <View style={styles.details}>
                             <Text style={styles.name}>{props.name}</Text>
                             <Text style={styles.amount}>€{parseFloat(props.amount).toFixed(2)}</Text>
-                            {/* <Text style={styles.amount}>€{props.amount}</Text> */}
                         </View>
                         <View style={styles.actions}>
                             {props.children}
